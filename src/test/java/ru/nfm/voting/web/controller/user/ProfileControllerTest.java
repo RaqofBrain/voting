@@ -1,4 +1,4 @@
-package ru.nfm.voting.web.user;
+package ru.nfm.voting.web.controller.user;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

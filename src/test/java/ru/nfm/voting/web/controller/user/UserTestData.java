@@ -1,4 +1,4 @@
-package ru.nfm.voting.web.user;
+package ru.nfm.voting.web.controller.user;
 
 import ru.nfm.voting.model.Role;
 import ru.nfm.voting.model.User;

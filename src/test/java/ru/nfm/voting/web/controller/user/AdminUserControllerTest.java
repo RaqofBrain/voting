@@ -1,4 +1,4 @@
-package ru.nfm.voting.web.user;
+package ru.nfm.voting.web.controller.user;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

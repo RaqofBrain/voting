@@ -1,4 +1,4 @@
-package ru.nfm.voting.web.user;
+package ru.nfm.voting.web.controller.user;
 
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Sort;

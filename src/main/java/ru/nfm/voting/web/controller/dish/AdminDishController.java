@@ -1,4 +1,4 @@
-package ru.nfm.voting.web.dish;
+package ru.nfm.voting.web.controller.dish;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import ru.nfm.voting.util.validation.ValidationUtil;
 import java.net.URI;
 import java.util.List;
 
-import static ru.nfm.voting.web.dish.AdminDishController.REST_URL;
+import static ru.nfm.voting.web.controller.dish.AdminDishController.REST_URL;
 
 @RestController
 @RequestMapping(value = REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
