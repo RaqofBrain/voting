@@ -37,11 +37,11 @@ public class Dish extends NamedEntity {
     @ToString.Exclude
     private Set<Menu> menus;
 
-    public Dish(int id, String name) {
+    public Dish(Integer id, String name) {
         super(id, name);
     }
 
-    public Dish(int id, String name, Integer price) {
+    public Dish(Integer id, String name, Integer price) {
         this(id, name);
         this.price = price;
     }
