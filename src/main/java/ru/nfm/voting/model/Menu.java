@@ -25,8 +25,8 @@ public class Menu extends BaseEntity {
     @ManyToMany
     @JoinTable(
             name = "menu_dishes",
-            joinColumns = @JoinColumn(name = "menu_id"),
-            inverseJoinColumns = @JoinColumn(name = "dish_id"))
+            joinColumns = @JoinColumn(name = "menu_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "dish_id", nullable = false))
     @ToString.Exclude
     private Set<Dish> dishes;
 }
