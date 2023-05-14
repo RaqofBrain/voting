@@ -20,7 +20,7 @@ Build a voting system for deciding where to have lunch.
 Each restaurant provides a new menu each day.
 
 -------------------------------------------------------------
-- Stack: [JDK 17](http://jdk.java.net/17/), Spring Boot 3.x, Lombok, H2, Caffeine Cache, SpringDoc OpenApi 2.x, Mapstruct, Liquibase 
+- Stack: [JDK 17](http://jdk.java.net/17/), Spring Boot 3.0.5, Lombok, H2, Caffeine Cache, SpringDoc OpenApi 2.x, Liquibase 
 - Run: `mvn spring-boot:run` in root directory.
 -----------------------------------------------------
 [REST API documentation](http://localhost:8080/)  
@@ -28,4 +28,5 @@ Credentials:
 ```
 User:  user@yandex.ru / password
 Admin: admin@gmail.com / admin
+Guest: guest@gmail.com / guest
 ```

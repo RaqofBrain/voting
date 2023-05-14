@@ -1,48 +1,48 @@
 package ru.nfm.voting.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table(name = "dish")
+@Table(name = "dish",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "dish_restaurant_id_name_unq_cs", columnNames = {"restaurant_id", "name"})
+        })
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString
+@ToString(callSuper = true)
 public class Dish extends NamedEntity {
+
+    @Column(name = "restaurant_id", nullable = false)
+    @JsonIgnore
+    private int restaurantId;
 
     @Column(name = "price", nullable = false)
     @NotNull
+    @Min(0)
     private Integer price;
 
-    @Column(name = "created", nullable = false, updatable = false)
-    @NotNull
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Date created = new Date();
-
-    @ManyToMany(mappedBy = "dishes")
+    @ManyToMany(mappedBy = "dishList")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     @ToString.Exclude
-    private Set<Menu> menus;
+    private List<Menu> menus;
 
-    public Dish(Integer id, String name) {
-        super(id, name);
+    public Dish(Dish dish) {
+        this(dish.getId(), dish.getName(), dish.getPrice(), dish.getRestaurantId());
     }
 
-    public Dish(Integer id, String name, Integer price) {
-        this(id, name);
+    public Dish(Integer id, String name, int price, int restaurantId) {
+        super(id, name);
         this.price = price;
+        this.restaurantId = restaurantId;
     }
 }

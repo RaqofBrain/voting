@@ -12,20 +12,13 @@ import ru.nfm.voting.util.validation.NoHtml;
 import java.util.List;
 
 @Entity
-@Table(name = "restaurant",
-        uniqueConstraints = {
-            @UniqueConstraint(columnNames = {"name", "address"}, name = "restaurant_unique_name_address_idx")
-})
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "restaurant", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"name", "address"}, name = "restaurant_name_address_unq_cs")})
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(callSuper = true)
 public class Restaurant extends NamedEntity {
-
-    @Column(name = "phone_number")
-    @NotBlank
-    @Size(min = 5, max = 13)
-    private String phoneNumber;
 
     @Column(name = "address", nullable = false)
     @NotBlank
@@ -33,25 +26,21 @@ public class Restaurant extends NamedEntity {
     @NoHtml
     private String address;
 
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
-    @JsonIgnore
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @ToString.Exclude
-    private List<Menu> menus;
+    @Column(name = "phone_number")
+    @Size(min = 7, max = 14)
+    @NoHtml
+    private String phoneNumber;
 
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     @ToString.Exclude
-    private List<Vote> votes;
+    private List<Dish> dishes;
 
-    public Restaurant(Integer id, String name) {
+    public Restaurant(Integer id, String name, String address, String phoneNumber) {
         super(id, name);
-    }
-
-    public Restaurant(Integer id, String name, String phoneNumber, String address) {
-        this(id, name);
-        this.phoneNumber = phoneNumber;
         this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 }
